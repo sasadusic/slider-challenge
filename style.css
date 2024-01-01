@@ -1,0 +1,242 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  /*
+    2. Remove default margin
+  */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: .3s;
+    font-family: 'Inter', sans-serif;
+
+  }
+  /*
+    Typographic tweaks!
+    3. Add accessible line-height
+    4. Improve text rendering
+  */
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  /*
+    5. Improve media defaults
+  */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  /*
+    6. Remove built-in form typography styles
+  */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  /*
+    7. Avoid text overflows
+  */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  /*
+    8. Create a root stacking context
+  */
+  #root, #__next {
+    isolation: isolate;
+  }
+  :root{
+    --Dark-Blue: hsl(240, 38%, 20%);
+    --Grayish-Blue: hsl(240, 18%, 77%);
+  }
+  .attribution { 
+    font-size: 14px; 
+    text-align: center;
+    padding: 12px; 
+    color: #fff;
+    background: hsl(240, 38%, 20%);
+  }
+  .attribution a { 
+    color: hsl(228, 45%, 44%); 
+  }
+p{
+    font-size: 32px;
+    font-weight: 300;
+}
+.main{
+  position: relative;
+  min-height: 100vh;
+}
+.slider-container{
+  position: relative;
+  background-image: url(images/pattern-bg.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center right;
+  width: 90%;
+  /* min-height: 90vh; */
+  margin: 5vh auto;
+  z-index: -2;
+  overflow: hidden;
+}
+.slider{
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+.item{
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  display: flex;
+  /* align-items: center; */
+  padding: 80px 120px 120px 120px;
+}
+.left{
+  width: 55%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.right{
+  width: 45%;
+}
+.item-image{
+  position: relative;
+  left: -6vw;
+  top: 40px;
+  z-index: -1;
+}
+.phar{
+  z-index: 1000;
+  margin-bottom: 32px;
+  color: var(--Dark-Blue);
+}
+.quotes{
+  position: relative;
+  bottom: -4vh;
+  left: 6vw;
+}
+.info{
+  display: flex;
+  gap: 12px;
+}
+.name{
+  color: var(--Dark-Blue);
+  font-weight: 700;
+}
+.role{
+  color: var(--Grayish-Blue);
+  font-weight: 500;
+}
+.arrow-cont{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 81%;
+  left: 60%;
+  box-shadow: 0 5px 5px 5px hsla(228, 45%, 44%, 0.3);
+  border-radius: 50px;
+  z-index: 10000;
+}
+.arrow-left{
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: rgb(223, 11, 11); */
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  background: white;
+  /* box-shadow: 0 5px 5px 5px hsla(228, 45%, 44%, 0.3); */
+  cursor: pointer;
+}
+.arrow-right{
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  background: white;
+  /* box-shadow: 0 5px 5px 5px hsla(228, 45%, 44%, 0.3); */
+  cursor: pointer;
+}
+/* #item-2{
+  display: none;
+} */
+.move{
+  animation: move-left 1s  forvard ease-out;
+}
+@keyframes move-left {
+  100%{
+    transform: translateX(100%);
+  }
+}
+/* Extra large devices (large desktops, 1200px and up) */
+@media (width < 1200px)  {
+  .slider-container{
+    min-height: 120vh;
+  }
+  .item{
+    padding: 5vw 10vw;  
+  }
+  .item-image{
+    left: 0;
+  }
+  .arrow-cont{
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (width < 992px) {
+  .slider-container{
+    background-position: center 20px;
+  }
+  .item{
+    flex-direction: column-reverse;
+    padding: 0;
+  }
+    .left{
+      width: 100%;
+      text-align: center;
+      padding-bottom: 60px;
+      padding-top: 170px;
+    }
+    .right{
+      width: 100%;
+      padding: 8vw;
+      margin: 0;
+    }
+    .phar{
+      font-size: 18px;
+    }
+    .info{
+      flex-direction: column;
+    }
+    .arrow-cont{
+      top: 34%;
+    }
+    .quotes{
+      left: 50%;
+      transform: translateX(-50%);
+      top: 40px;
+      width: 80px;
+    }
+    .name{
+      margin-bottom: 0;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (width < 768px) {}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (width < 576px) {}
